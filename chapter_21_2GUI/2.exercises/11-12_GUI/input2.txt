@@ -1,0 +1,65 @@
+A B C
+15.5.1991
+Parkovaya street 1
+                "mobile phone"	  899.99	     5
+                        "beer"	    39.5	    12
+                       "chips"	   14.99	     8
+
+D F K
+15.5.1991
+Parkovaya street 1
+
+B C D
+15.5.1991
+Parkovaya street 1
+                "mobile phone"	  899.99	     5
+                        "beer"	    39.5	    12
+                       "chips"	   14.99	     8
+
+L K M
+15.5.1991
+Parkovaya street 1
+                        "beer"	    39.5	   100
+
+S S S
+15.5.1991
+Parkovaya street 10
+                "mobile phone"	  899.99	     5
+                        "beer"	    39.5	    12
+                       "chips"	   14.99	     8
+
+P U K
+15.5.1991
+Parkovaya street 10
+                "mobile phone"	  899.99	     5
+                        "beer"	    39.5	    12
+                       "chips"	   14.99	     8
+
+M O P
+15.5.1991
+Parkovaya street 19
+                "mobile phone"	  899.99	     5
+                        "beer"	    39.5	    12
+                       "chips"	   14.99	     8
+
+A B C
+15.5.1991
+Parkovaya street 2
+                "mobile phone"	  899.99	     5
+                        "beer"	    39.5	    12
+                       "chips"	   14.99	     8
+
+A B C
+15.5.1991
+Parkovaya street 3
+                "mobile phone"	  899.99	     5
+                        "beer"	    39.5	    12
+                       "chips"	   14.99	     8
+
+H U T
+15.5.1991
+Parkovaya street 9
+                "mobile phone"	  899.99	     5
+                        "beer"	    39.5	    12
+                       "chips"	   14.99	     8
+

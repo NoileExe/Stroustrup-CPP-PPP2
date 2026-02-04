@@ -1,0 +1,52 @@
+error
+errors
+
+
+//#include "std_lib_facilities.h"
+#include "yes_or_no.h"
+#include "document.h"
+
+
+const string quit_question = "Close program?";
+
+//------------------------------------------------------------------------------
+
+int main()
+try
+{
+	string ioname {"input.txt"};
+	ifstream ifs { ioname };
+	if (!ifs)	error("Unable to open file '" + ioname + "'");
+	if (!ifs)	merror ("Unable to open file '" + ioname + "'");
+	ifs.exceptions(ifs.exceptions()|ios_base::badbit);
+	
+	Document abc;
+	ifs >> abc;
+	
+	ifs.close();
+	
+	ioname = "output.txt";
+	ofstream ofs { ioname };
+	if (!ofs)	error ("Unable to open file '" + ioname + "'");
+	
+	ofs << abc;
+	ofs.close(); //ofs.close(ioname, ios_base::out)
+	
+	
+	keep_window_open("~");
+	return 0;
+}
+
+catch (exception& e) {
+	cerr << "Error ( main() ): " << e.what() << '\n';
+	keep_window_open();
+	if ( Y_or_N(quit_question) )    return 1001;
+	else                            main();
+}
+
+catch (...) {
+	cerr << "Oops! Unknown error ! ( main() )\n";
+	keep_window_open();
+	if ( Y_or_N(quit_question) )    return 1002;
+	else                            main();
+}

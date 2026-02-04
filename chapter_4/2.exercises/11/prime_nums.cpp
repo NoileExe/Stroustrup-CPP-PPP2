@@ -1,0 +1,37 @@
+//Данная программа вычисляет и выводит все простые числа от 1 до 100
+
+#include <yes_or_no.h>
+#include <console_encoding.h>
+#include <std_lib_facilities.h>
+
+
+int main()
+{
+	ConsoleCP cp {};	//Включает русский если не включен в настройках компилятора
+	
+	cout << "Данная программа вычисляет и выводит все простые числа от 1 до 100"
+		 << "\n\n";
+	
+	vector<int> prime_nums; //Вектор простых чисел
+	
+	for (int i = 1; i<=100; ++i) {
+		for (int j = 1; j<=i; ++j) {
+			if ( (i == 1) || ((j > 1) && ((i%j) == 0) && (j < i)) )
+			/*Если текущее число единица ИЛИ j не единица И числа делятся без
+			остатка И j меньше (не равно) i*/
+				break;
+			else if ( (i > 1) && (j == i) )
+				prime_nums.push_back(i);
+		}
+	}
+	
+	cout << "Простые числа:\n";
+	
+	for (int i = 0; i<prime_nums.size(); ++i)
+		cout << prime_nums[i] << "\n";
+	
+	
+	cout << "\n\n";
+	press_Enter_key();
+	return EXIT_SUCCESS;
+}

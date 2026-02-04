@@ -1,0 +1,186 @@
+class
+<fstream>
+std::ifstream
+typedef basic_ifstream<char> ifstream;
+Input file stream class
+ios_base
+ios
+istream
+ifstream
+
+Input stream class to operate on files.
+
+Objects of this class maintain a filebuf object as their internal stream buffer, which performs input/output operations on the file they are associated with (if any).
+
+File streams are associated with files either on construction, or by calling member open.
+
+This is an instantiation of basic_ifstream with the following template parameters:
+template parameter	definition	comments
+charT	char	Aliased as member char_type
+traits	char_traits<char>	Aliased as member traits_type
+
+Apart from the internal file stream buffer, objects of this class keep a set of internal fields inherited from ios_base, ios and istream:
+
+field	member functions	description
+Formatting	format flags	flags
+setf
+unsetf	A set of internal flags that affect how certain input/output operations are interpreted or generated.
+See member type fmtflags.
+field width	width	Width of the next formatted element to insert.
+display precision	precision	Decimal precision for the next floating-point value inserted.
+locale	getloc
+imbue	The locale object used by the function for formatted input/output operations affected by localization properties.
+fill character	fill	Character to pad a formatted field up to the field width (width).
+State	error state	rdstate
+setstate
+clear	The current error state of the stream.
+Individual values may be obtained by calling good, eof, fail and bad.
+See member type iostate.
+exception mask	exceptions	The state flags for which a failure exception is thrown.
+See member type iostate.
+Other	callback stack	register_callback	Stack of pointers to functions that are called when certain events occur.
+extensible arrays	iword
+pword
+xalloc	Internal arrays to store objects of type long and void*.
+tied stream	tie	Pointer to output stream that is flushed before each i/o operation on this stream.
+stream buffer	rdbuf	Pointer to the associated streambuf object, which is charge of all input/output operations.
+character count	gcount	Count of characters read by last unformatted input operation.
+
+Member types
+The class declares the following member types:
+member type	definition
+char_type	char
+traits_type	char_traits<char>
+int_type	int
+pos_type	streampos
+off_type	streamoff
+
+These member types are inherited from its base classes istream and ios_base:
+event
+Type to indicate event type (public member type )
+event_callback
+Event callback function type (public member type )
+failure
+Base class for stream exceptions (public member class )
+fmtflags
+Type for stream format flags (public member type )
+Init
+Initialize standard stream objects (public member class )
+iostate
+Type for stream state flags (public member type )
+openmode
+Type for stream opening mode flags (public member type )
+seekdir
+Type for stream seeking direction flag (public member type )
+sentry
+Prepare stream for input (public member class )
+
+Public member functions
+(constructor)
+Construct object and optionally open file (public member function )
+open
+Open file (public member function )
+is_open
+Check if a file is open (public member function )
+close
+Close file (public member function )
+rdbuf
+Get stream buffer (public member function )
+operator= 
+Move assignment (public member function )
+swap 
+Swap internals (public member function )
+
+Public member functions inherited from istream
+operator>>
+Extract formatted input (public member function )
+gcount
+Get character count (public member function )
+get
+Get characters (public member function )
+getline
+Get line (public member function )
+ignore
+Extract and discard characters (public member function )
+peek
+Peek next character (public member function )
+read
+Read block of data (public member function )
+readsome
+Read data available in buffer (public member function )
+putback
+Put character back (public member function )
+unget
+Unget character (public member function )
+tellg
+Get position in input sequence (public member function )
+seekg
+Set position in input sequence (public member function )
+sync
+Synchronize input buffer (public member function )
+
+Public member functions inherited from ios
+good
+Check whether state of stream is good (public member function )
+eof
+Check whether eofbit is set (public member function )
+fail
+Check whether either failbit or badbit is set (public member function )
+bad
+Check whether badbit is set (public member function )
+operator!
+Evaluate stream (not) (public member function )
+operator bool 
+Evaluate stream (public member function )
+rdstate
+Get error state flags (public member function )
+setstate
+Set error state flag (public member function )
+clear
+Set error state flags (public member function )
+copyfmt
+Copy formatting information (public member function )
+fill
+Get/set fill character (public member function )
+exceptions
+Get/set exceptions mask (public member function )
+imbue
+Imbue locale (public member function )
+tie
+Get/set tied stream (public member function )
+rdbuf
+Get/set stream buffer (public member function )
+narrow
+Narrow character (public member function )
+widen
+Widen character (public member function )
+
+Public member functions inherited from ios_base
+flags
+Get/set format flags (public member function )
+setf
+Set specific format flags (public member function )
+unsetf
+Clear specific format flags (public member function )
+precision
+Get/Set floating-point decimal precision (public member function )
+width
+Get/set field width (public member function )
+imbue
+Imbue locale (public member function )
+getloc
+Get current locale (public member function )
+xalloc
+Get new index for extensible array [static] (public static member function )
+iword
+Get integer element of extensible array (public member function )
+pword
+Get pointer element of extensible array (public member function )
+register_callback
+Register event callback function (public member function )
+sync_with_stdio
+Toggle synchronization with cstdio streams [static] (public static member function )
+
+Non-member function overloads
+swap 
+Swap input file streams (function template )

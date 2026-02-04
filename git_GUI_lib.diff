@@ -1,0 +1,229 @@
+diff --git a/include/GUI.cpp b/mod/GUI.cpp
+index b0b2d81..314f497 100644
+--- a/include/GUI.cpp
++++ b/mod/GUI.cpp
+@@ -1,4 +1,4 @@
+-#include "GUI.h"
++#include "Gui.h"
+ #include "std_lib_facilities.h"
+ #include <sstream>
+ 
+diff --git a/include/Graph.cpp b/mod/Graph.cpp
+index f9cb687..bc55a85 100644
+--- a/include/Graph.cpp
++++ b/mod/Graph.cpp
+@@ -310,7 +310,12 @@ bool can_open(const string& s)
+             // check if a file named s exists and can be opened for reading
+ {
+ 	ifstream ff(s.c_str());
+-	return ff;
++
++	//***************************************************************************
++	if (!ff)	return false;
++	else        return true;
++	//***************************************************************************
++	//return ff;
+ }
+ 
+ 
+diff --git a/include/Graph.h b/mod/Graph.h
+index efd5d24..85e6bd1 100644
+--- a/include/Graph.h
++++ b/mod/Graph.h
+@@ -7,7 +7,7 @@
+ //#include<string>
+ //#include<cmath>
+ #include "fltk.h"
+-//#include "std_lib_facilities.h"
++#include "std_lib_facilities.h" //было закомментированно
+ 
+ namespace Graph_lib {
+ // defense against ill-behaved Linux macros:
+@@ -156,7 +156,7 @@ public:
+ 	Shape& operator=(const Shape&) = delete;
+ private:
+ 	vector<Point> points;	// not used by all shapes
+-	Color lcolor {fl_color()};
++	Color lcolor {static_cast<int>(fl_color())};
+ 	Line_style ls {0};
+ 	Color fcolor {Color::invisible};
+ 
+diff --git a/include/MatrixIO11.h b/mod/MatrixIO11.h
+index e623ba7..0db2f6f 100644
+--- a/include/MatrixIO11.h
++++ b/mod/MatrixIO11.h
+@@ -1,6 +1,6 @@
+ 
+ #include <iostream>
+-#include "Matrix.h"
++#include "Matrix11.h"
+ 
+ namespace Numeric_lib {
+ 
+diff --git a/include/Point.h b/mod/Point.h
+index 85153e2..953b5fe 100644
+--- a/include/Point.h
++++ b/mod/Point.h
+@@ -8,8 +8,8 @@ namespace Graph_lib {
+ 
+ struct Point {
+ 	int x,y;
+-//	Point(int xx, int yy) : x(xx), y(yy) { }
+-//	Point() :x(0), y(0) { }
++	Point(int xx, int yy) : x(xx), y(yy) { }	//был закомментирован
++	Point() :x(0), y(0) { }						//был закомментирован
+ 
+ //	Point& operator+=(Point d) { x+=d.x; y+=d.y; return *this; }
+ };
+diff --git a/include/Simple_window.h b/mod/Simple_window.h
+index d6071b6..77daaf7 100644
+--- a/include/Simple_window.h
++++ b/mod/Simple_window.h
+@@ -1,16 +1,16 @@
+ 
+-#include "GUI.h"	// for Simple_window only (doesn't really belong in Window.h)
++#include "Gui.h"	// for Simple_window only (doesn't really belong in Window.h)
+ 
+ using namespace Graph_lib;
+ 
+ // Simple_window is basic scaffolding for ultra-simple interaction with graphics
+ // it provides one window with one "next" button for ultra-simple animation
+ 
+-struct Simple_window : Window {
++struct Simple_window : Graph_lib::Window {
+ 	Simple_window(Point xy, int w, int h, const string& title )
+-	: Window(xy,w,h,title),
++	: Graph_lib::Window(xy,w,h,title),
+ 	  button_pushed(false),
+-	  next_button(Point(x_max()-70,0), 70, 20, "Next", cb_next) { attach(next_button); }
++	  next_button(Point(x_max()-70,0), 70, 20, "Next", cb_next) { Graph_lib::Window::attach(next_button); }
+ 	
+ 	void wait_for_button()
+ 	// modified event loop
+diff --git a/include/Window.cpp b/mod/Window.cpp
+index e48df57..a79f5e8 100644
+--- a/include/Window.cpp
++++ b/mod/Window.cpp
+@@ -1,6 +1,6 @@
+ #include "Window.h"
+ #include "Graph.h"
+-#include "GUI.h"
++#include "Gui.h"
+ 
+ namespace Graph_lib {
+ 
+diff --git a/include/Window.h b/mod/Window.h
+index fbeab4c..88dc17d 100644
+--- a/include/Window.h
++++ b/mod/Window.h
+@@ -6,7 +6,7 @@
+ #include "std_lib_facilities.h"
+ 
+ #include "Point.h"
+-//#include "GUI.h"
++//#include "Gui.h"
+ 
+ namespace Graph_lib {
+ 
+diff --git a/include/fltk.h b/mod/fltk.h
+index 3b79f8e..9e34d73 100644
+--- a/include/fltk.h
++++ b/mod/fltk.h
+@@ -1,17 +1,17 @@
+ #ifndef FLTK_GUARD
+ #define FLTK_GUARD 1
+ 
+-#include "FL/Fl.H"
+-#include "FL/Fl_Window.H" 
+-#include "FL/Fl_Button.H" 
+-#include "FL/Fl_Input.H" 
+-#include "FL/Fl_Output.H" 
++#include <FL/Fl.H>
++#include <FL/Fl_Window.H> 
++#include <FL/Fl_Button.H> 
++#include <FL/Fl_Input.H> 
++#include <FL/Fl_Output.H> 
+ #include <cstdlib>       // for exit(0)
+-#include "FL/fl_draw.H"
+-#include "FL/Enumerations.H"
++#include <FL/fl_draw.H>
++#include <FL/Enumerations.H>
+ 
+-#include "Fl/Fl_JPEG_Image.H"
+-#include "Fl/Fl_GIF_Image.H"
++#include <FL/Fl_JPEG_Image.H>
++#include <FL/Fl_GIF_Image.H>
+ 
+ #endif
+ 
+diff --git a/include/std_lib_facilities.h b/mod/std_lib_facilities.h
+index 2fd388c..6817908 100644
+--- a/include/std_lib_facilities.h
++++ b/mod/std_lib_facilities.h
+@@ -19,10 +19,12 @@
+ Revised November 25 2013: remove support for pre-C++11 compilers, use C++11: <chrono>
+ Revised November 28 2013: add a few container algorithms
+ Revised June 8 2014: added #ifndef to workaround Microsoft C++11 weakness
++Revised Febrary 2 2015: randint() can now be seeded (see exercise 5.13).
++Revised August 3, 2020: a cleanup removing support for ancient compilers
+ */
+ 
+ #ifndef H112
+-#define H112 251113L
++#define H112 080315L
+ 
+ 
+ #include<iostream>
+@@ -45,8 +47,6 @@
+ //------------------------------------------------------------------------------
+ 
+ 
+-//------------------------------------------------------------------------------
+-
+ typedef long Unicode;
+ 
+ //------------------------------------------------------------------------------
+@@ -70,7 +70,7 @@ struct Range_error : out_of_range {	// enhanced vector range error reporting
+ template< class T> struct Vector : public std::vector<T> {
+ 	using size_type = typename std::vector<T>::size_type;
+ 
+-#ifdef _MSC_VER
++/* #ifdef _MSC_VER
+ 	// microsoft doesn't yet support C++11 inheriting constructors
+ 	Vector() { }
+ 	explicit Vector(size_type n) :std::vector<T>(n) {}
+@@ -78,9 +78,8 @@ template< class T> struct Vector : public std::vector<T> {
+ 	template <class I>
+ 	Vector(I first, I last) : std::vector<T>(first, last) {}
+ 	Vector(initializer_list<T> list) : std::vector<T>(list) {}
+-#else
++*/
+ 	using std::vector<T>::vector;	// inheriting constructor
+-#endif
+ 
+ 	T& operator[](unsigned int i) // rather than return at(i);
+ 	{
+@@ -208,15 +207,21 @@ template<class R, class A> R narrow_cast(const A& a)
+ 
+ // random number generators. See 24.7.
+ 
++inline default_random_engine& get_rand()
++{
++	static default_random_engine ran;	// note: not thread_local
++	return ran;
++};
+ 
++inline void seed_randint(int s) { get_rand().seed(s); }
+ 
+-inline int randint(int min, int max) { static default_random_engine ran; return uniform_int_distribution<>{min, max}(ran); }
++inline int randint(int min, int max) { return uniform_int_distribution<>{min, max}(get_rand()); }
+ 
+ inline int randint(int max) { return randint(0, max); }
+ 
+ //inline double sqrt(int x) { return sqrt(double(x)); }	// to match C++0x
+ 
+-// container algorithms. See 21.9.
++// container algorithms. See 21.9.   // C++ has better versions of this:
+ 
+ template<typename C>
+ using Value_type = typename C::value_type;

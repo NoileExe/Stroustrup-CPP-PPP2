@@ -1,0 +1,59 @@
+# Директория сборки задач
+build/
+
+# Общие библиотеки
+include/fltk/
+include/fltk.h
+include/Graph.cpp
+include/Graph.h
+include/GUI.cpp
+include/GUI.h
+include/Gui.h
+include/Matrix.h
+include/Matrix11.h
+include/MatrixIO.h
+include/MatrixIO11.h
+include/Point.h
+include/Simple_window.cpp
+include/Simple_window.h
+include/std_lib_facilities.h
+include/Window.cpp
+include/Window.h
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+CTestTestfile.cmake
+_Dependents.cmake
+CMakeUserPresets.json
+
+# Object files
+*.o
+*.obj
+*.ilk
+*.pdb
+
+# MSVC
+*.suo
+*.user
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+Debug/
+Release/
+x64/
+ipch/
+.vs/
+
+# Ninja
+.ninja_*
+build.ninja
+
+# FLTK resources (auto-generated)
+*.fltkrc
+
+# Temporary files
+*~
+*.bak
+*.tmp
